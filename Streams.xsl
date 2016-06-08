@@ -88,6 +88,26 @@ xmlns:m="urn:mtconnect.org:MTConnectStreams:1.3"
 					<xsl:apply-templates select="/m:MTConnectStreams/m:Streams/m:DeviceStream" />
 				
 				</div>
+				
+				<footer class="footer" style="margin-top: 20px; margin-bottom: 20px;">
+				
+				  <div class="container">
+				  
+					<div class="row">
+					
+						<p class="col-md-3 text-muted">This template is designed by Feenux LLC and is available for use through the MIT license.</p>
+						
+						<p class="col-md-3 text-muted">Source code for this template is available at 
+							<a href="https://github.com/TrakHound/MTConnect-Agent-Stylesheet">GitHub</a>
+						</p>
+					
+						<p class="col-md-3 text-muted">© 2016 Feenux LLC, All Rights Reserved</p>
+
+					</div>
+
+				  </div>
+				  
+				</footer>
 											
 			</body>
 			
