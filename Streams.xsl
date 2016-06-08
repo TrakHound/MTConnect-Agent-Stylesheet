@@ -1,30 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:m="urn:mtconnect.org:MTConnectStreams:1.3" >
+<xsl:stylesheet version="1.0" 
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns:fn="http://www.w3.org/2005/xpath-functions" 
+xmlns:m="urn:mtconnect.org:MTConnectStreams:1.3"
+>
+
 	<xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
+		
 	<xsl:template match="/">
+	
 			<head>
 			
 				<title>MTConnect Device Streams</title>
 				
-				<!-- <link type="text/css" href="/styles/Streams.css" media="screen" rel="stylesheet"/> -->
-				
-				<!-- Load Bootstrap CSS -->
-				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+				<link rel="stylesheet"
+				href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
 				integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" 
 				crossorigin="anonymous"/>
 				
+				<script src="/styles/jquery-1.12.4.min.js"></script>
+				<script src="/styles/js/bootstrap.min.js"></script>
+				<script src="/styles/GetSample.js"></script>
+				
+				<!-- Latest compiled and minified JavaScript -->
+				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+				integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+				crossorigin="anonymous"></script>
+														
 			</head>
 			
 			<body>
 			
-				<div class="container-fluid">
-				
-					<div class="row">
+				<nav class="navbar navbar-default navbar-fixed-top">
+				  <div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
 					
-						<img class="col-md-3 col-xs-6" style="margin-bottom: 20px;" src="/styles/MTConnect-Logo.png"></img>
-					
+					  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					  </button>
+					  
+					  <a class="navbar-brand" style="padding: 5px 20px;" href="http://www.mtconnect.org">
+						<img alt="Brand" src="/styles/MTConnect-Logo.png" height="40"/>
+					  </a>
+					  
 					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					  <ul class="nav navbar-nav">
+					  
+						<li><a href="../probe">Probe</a></li>
 						
+						<li><a href="../current">Current</a></li>
+						
+						<li><a href="../sample">Sample</a></li>
+						
+					  </ul>
+					  
+					  <div class="navbar-form navbar-left">
+					  
+						<div class="form-group">
+							<input id="fromText" type="text" class="form-control" style="margin-right: 10px;" placeholder="From"/>
+							<input id="countText" type="text" class="form-control" style="margin-right: 10px;" placeholder="Count"/>
+						</div>
+
+						<button onclick="getSample();" class="btn btn-default">Get Sample</button>
+					  
+					  </div>
+					  					  
+					</div><!-- /.navbar-collapse -->
+				  </div><!-- /.container-fluid -->
+				</nav>
+				
+				<div class="container-fluid" style="margin-top: 60px;">
+					
 					<p>
 						<xsl:apply-templates select="/m:MTConnectStreams/m:Header" />
 					</p>
@@ -34,7 +88,7 @@
 					<xsl:apply-templates select="/m:MTConnectStreams/m:Streams/m:DeviceStream" />
 				
 				</div>
-			
+											
 			</body>
 			
 	</xsl:template>
@@ -99,7 +153,7 @@
 							<h6 class="list-group-item-header">
 
 								<xsl:value-of select="name()"/>
-									
+								
 							</h6>
 
 							<h4 class="list-group-item-text">
@@ -127,7 +181,7 @@
 			<h6 style="margin-bottom: 0px;"><xsl:value-of select="@component" /></h6>
 							
 			<h3 style="margin-top: 0px; margin-bottom: 5px;"><xsl:value-of select="@name" /></h3>
-		
+			
 		</div>
 	
 		<div class="panel-group">
