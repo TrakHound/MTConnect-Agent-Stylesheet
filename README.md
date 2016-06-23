@@ -13,8 +13,9 @@ XML Stylesheet for MTConnect Agents using [Bootstrap](http://getbootstrap.com/).
 Just over 300 KB. This Includes the necessary files for jquery, bootstrap, and the logo image.
 
 ## Installation
-1. Copy the contents of this repository (you can exclude the .git folder) into the "Styles" folder for the MTConnect Agent.
-2. Edit the Agent's configuration file (ex. agent.cfg) to look for the stylesheets as shown below:
+1. Download the latest [release](../../../MTConnect-Agent-Stylesheet/releases)
+2. Unzip the contents into the "Styles" folder for the MTConnect Agent.
+3. Edit the Agent's configuration file (ex. agent.cfg) to look for the stylesheets as shown below:
 
 #### Agent.cfg
 
@@ -36,8 +37,8 @@ StreamsStyle { Location = /styles/Streams.xsl }
 
 ```
 
-3. Restart Agent
-4. Navigate to Agent's url to view
+4. Restart Agent
+5. Navigate to Agent's url to view
 
 ## Customization
 This stylesheet is easily customizable using the Custom.css file. Customizations can include any overrides of the standard bootstrap styles such as changing the colors of the panel headers. The logo and link can be changed by editing the following lines in both Devices.xsl and Streams.xsl as shown below:
