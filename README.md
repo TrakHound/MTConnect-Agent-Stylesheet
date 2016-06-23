@@ -1,5 +1,5 @@
 # MTConnect-Agent-Stylesheet
-XML Stylesheet for MTConnect Agents using [Bootstrap](http://getbootstrap.com/). This provides a better appearance than the default stylesheet and also adds the ability to switch between Probe, Current, and Sample requests.
+XML Stylesheet for MTConnect Agents using [Bootstrap](http://getbootstrap.com/). This provides a better appearance than the default stylesheet and also adds links to run Probe, Current, and Sample requests.
 
 ## About
 
