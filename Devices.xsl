@@ -16,7 +16,7 @@ xmlns:m="urn:mtconnect.org:MTConnectDevices:1.3"
 				<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
 				<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 			
-				<title>Okuma MTConnect Devices</title>
+				<title>MTConnect Devices</title>
 					
 				<link href="/styles/bootstrap.min.css" rel="stylesheet"></link>
 				<link href="/styles/Custom.css" rel="stylesheet"></link>
@@ -121,7 +121,7 @@ xmlns:m="urn:mtconnect.org:MTConnectDevices:1.3"
 				
 					<div class="row">
 					
-						<div class="col-sm-2">
+						<div class="col-lg-3 col-md-4 col-xs-12">
 						
 							<h6 style="margin-bottom: 0px;">Device</h6>
 						
@@ -129,7 +129,7 @@ xmlns:m="urn:mtconnect.org:MTConnectDevices:1.3"
 						
 						</div>
 						
-						<div class="col-sm-2">
+						<div class="col-lg-3 col-md-4 hidden-xs">
 						
 							<h6 style="margin-bottom: 0px;">UUID</h6>
 
@@ -144,8 +144,6 @@ xmlns:m="urn:mtconnect.org:MTConnectDevices:1.3"
 			</div>
 			
 			<div class="panel-body">
-			
-				
 			
 				<xsl:apply-templates select="m:Components"/>
 			
@@ -164,10 +162,33 @@ xmlns:m="urn:mtconnect.org:MTConnectDevices:1.3"
 			
 			<div class="panel-body">
 				
-				<ul class="list-group">
-				
-					<xsl:for-each select="@*">
+				<!-- Standard Header Table-->
+				<table class="table table-hover visible-lg visible-md">
+					<thead>
 					
+						<xsl:for-each select="@*">						
+							<th><xsl:value-of select="name()"/></th>											
+						</xsl:for-each>
+
+					</thead>
+					
+					<tbody>
+					
+						<tr>
+							<xsl:for-each select="@*">
+								<td><xsl:value-of select="."/></td>
+							</xsl:for-each>
+						</tr>
+						
+					</tbody>
+					
+				</table>
+				
+				<!-- Small/Mobile Header List -->
+				<ul class="list-group visible-sm visible-xs">
+												
+					<xsl:for-each select="@*">
+										
 						<li class="list-group-item col-md-3">
 							
 							<h6 class="list-group-item-header">
@@ -178,8 +199,8 @@ xmlns:m="urn:mtconnect.org:MTConnectDevices:1.3"
 
 							<h4 class="list-group-item-text">
 							
-								<xsl:value-of select="." />
-								
+								<xsl:value-of select="." />	
+									
 							</h4>
 												
 						</li>
@@ -214,7 +235,7 @@ xmlns:m="urn:mtconnect.org:MTConnectDevices:1.3"
 				
 					<div class="row">
 										
-						<div class="col-sm-1">
+						<div class="col-lg-3 col-md-4 col-xs-12">
 						
 							<h6 style="margin-bottom: 0px;">Name</h6>
 						
@@ -222,7 +243,7 @@ xmlns:m="urn:mtconnect.org:MTConnectDevices:1.3"
 						
 						</div>
 						
-						<div class="col-sm-1">
+						<div class="col-lg-3 col-md-4 hidden-xs">
 						
 							<h6 style="margin-bottom: 0px;">ID</h6>
 
@@ -230,7 +251,7 @@ xmlns:m="urn:mtconnect.org:MTConnectDevices:1.3"
 						
 						</div>
 						
-						<div class="col-sm-1">
+						<div class="col-lg-3 col-md-4 hidden-xs">
 						
 							<h6 style="margin-bottom: 0px;">Native Name</h6>
 
@@ -244,13 +265,6 @@ xmlns:m="urn:mtconnect.org:MTConnectDevices:1.3"
 			
 			</div>
 		
-<!-- 			<div class="panel-heading">
-				<i class="fa fa-bar-chart-o fa-fw"></i>
-				<xsl:value-of select="@id"/>
-				<xsl:value-of select="@name"/>
-				<xsl:value-of select="@nativeName"/>
-			</div> -->
-			
 			<div class="panel-body">	
 
 				<div class="panel-group">
@@ -267,8 +281,8 @@ xmlns:m="urn:mtconnect.org:MTConnectDevices:1.3"
 	
 	<xsl:template match="m:DataItems">
 	
-		<div class="table-responsive">
-
+		<!-- Standard Table -->
+		<div class="table-responsive visible-lg visible-md">
 			<table class="table table-hover">
 				<thead>
 					<th>Id</th>
@@ -295,8 +309,56 @@ xmlns:m="urn:mtconnect.org:MTConnectDevices:1.3"
 					</xsl:for-each>
 				</tbody>
 			</table>
+		</div>
+		
+		<!-- Small Table -->
+		<div class="table-responsive hidden-xs visible-sm">
+			
+			<table class="table table-hover hidden-xs visible-sm">
+				<thead>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Category</th>
+					<th>Type</th>
+				</thead>
+				<tbody>
+					<xsl:for-each select="*">
+						<tr>
+							<td><xsl:value-of select="@id"/></td>
+							<td><xsl:value-of select="@name"/></td>
+							<td><xsl:value-of select="@category"/></td>
+							<td><xsl:value-of select="@type"/></td>
+						</tr>
+					</xsl:for-each>
+				</tbody>
+			</table>
+			
+		</div>
+			
+		<!-- Extra Small List -->
+		<ul class="list-group visible-xs">
+		
+			<xsl:for-each select="*">
+			
+				<li class="list-group-item col-sm-12">
+					
+					<h6 class="list-group-item-header">
 
-		</div>		
+						<xsl:value-of select="@type"/>
+						
+					</h6>
+
+					<h4 class="list-group-item-text">
+					
+						<xsl:value-of select="@id"/>
+							
+					</h4>
+										
+				</li>
+
+			</xsl:for-each>
+
+		</ul>				
 
 	</xsl:template>
 	
