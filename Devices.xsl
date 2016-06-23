@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="2.0" 
+<xsl:stylesheet version="1.0" 
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
 xmlns:xs="http://www.w3.org/2001/XMLSchema" 
 xmlns:fn="http://www.w3.org/2005/xpath-functions" 
-xmlns:m="urn:mtconnect.org:MTConnectStreams:1.3"
+xmlns:m="urn:mtconnect.org:MTConnectDevices:1.3"
 >
 
 	<xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
@@ -16,7 +16,7 @@ xmlns:m="urn:mtconnect.org:MTConnectStreams:1.3"
 				<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
 				<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 			
-				<title>Okuma MTConnect Device Streams</title>
+				<title>Okuma MTConnect Devices</title>
 					
 				<link href="/styles/bootstrap.min.css" rel="stylesheet"></link>
 				<link href="/styles/Custom.css" rel="stylesheet"></link>
@@ -73,12 +73,12 @@ xmlns:m="urn:mtconnect.org:MTConnectStreams:1.3"
 				<div class="container-fluid" style="margin-top: 60px;">
 					
 					<p>
-						<xsl:apply-templates select="/m:MTConnectStreams/m:Header" />
+						<xsl:apply-templates select="/m:MTConnectDevices/m:Header" />
 					</p>
 					
 					<hr/>
 					
-					<xsl:apply-templates select="/m:MTConnectStreams/m:Streams/m:DeviceStream" />
+					<xsl:apply-templates select="/m:MTConnectDevices/m:Devices/m:Device" />
 				
 				</div>
 				
@@ -111,7 +111,7 @@ xmlns:m="urn:mtconnect.org:MTConnectStreams:1.3"
 			
 	</xsl:template>
 	
-	<xsl:template match="m:DeviceStream">
+	<xsl:template match="m:Device">
 	
 		<div class="panel panel-default">
 		
@@ -145,7 +145,9 @@ xmlns:m="urn:mtconnect.org:MTConnectStreams:1.3"
 			
 			<div class="panel-body">
 			
-				<xsl:apply-templates select="m:ComponentStream"/>
+				
+			
+				<xsl:apply-templates select="m:Components"/>
 			
 			</div>
 				
@@ -161,11 +163,11 @@ xmlns:m="urn:mtconnect.org:MTConnectStreams:1.3"
 			</div>
 			
 			<div class="panel-body">
-			
+				
 				<ul class="list-group">
-												
+				
 					<xsl:for-each select="@*">
-										
+					
 						<li class="list-group-item col-md-3">
 							
 							<h6 class="list-group-item-header">
@@ -176,8 +178,8 @@ xmlns:m="urn:mtconnect.org:MTConnectStreams:1.3"
 
 							<h4 class="list-group-item-text">
 							
-								<xsl:value-of select="." />	
-									
+								<xsl:value-of select="." />
+								
 							</h4>
 												
 						</li>
@@ -192,63 +194,109 @@ xmlns:m="urn:mtconnect.org:MTConnectStreams:1.3"
 	
 	</xsl:template>
 	
-	<xsl:template match="m:ComponentStream">
-	
-		<div style="margin-left: 10px;">
+	<xsl:template match="m:Components">
 		
-			<h6 style="margin-bottom: 0px;"><xsl:value-of select="@component" /></h6>
-							
-			<h3 style="margin-top: 0px; margin-bottom: 5px;"><xsl:value-of select="@name" /></h3>
-			
-		</div>
-	
 		<div class="panel-group">
 				
-			<xsl:apply-templates select="	m:Samples"/>
-			<xsl:apply-templates select="	m:Events"/>
-			<xsl:apply-templates select="	m:Condition"/>
+			<xsl:apply-templates select="*"/>
 		
 		</div>
 				
 	</xsl:template>
 	
-	<xsl:template match="*">
+	<xsl:template match="m:Components/*">
 	
 		<div class="panel panel-default">
+			
 			<div class="panel-heading">
-				<i class="fa fa-bar-chart-o fa-fw"></i>
-				<xsl:value-of select="name()"/>
+			
+				<div class="container-fluid">
+				
+					<div class="row">
+										
+						<div class="col-sm-1">
+						
+							<h6 style="margin-bottom: 0px;">Name</h6>
+						
+							<h3 style="margin-top: 0px; margin-bottom: 5px;"><xsl:value-of select="@name"/></h3>
+						
+						</div>
+						
+						<div class="col-sm-1">
+						
+							<h6 style="margin-bottom: 0px;">ID</h6>
+
+							<h3 style="margin-top: 0px; margin-bottom: 5px;"><xsl:value-of select="@id"/></h3>
+						
+						</div>
+						
+						<div class="col-sm-1">
+						
+							<h6 style="margin-bottom: 0px;">Native Name</h6>
+
+							<h3 style="margin-top: 0px; margin-bottom: 5px;"><xsl:value-of select="@nativeName"/></h3>
+						
+						</div>
+					
+					</div>
+				
+				</div>
+			
 			</div>
+		
+<!-- 			<div class="panel-heading">
+				<i class="fa fa-bar-chart-o fa-fw"></i>
+				<xsl:value-of select="@id"/>
+				<xsl:value-of select="@name"/>
+				<xsl:value-of select="@nativeName"/>
+			</div> -->
 			
 			<div class="panel-body">	
 
-				<div class="table-responsive">
-
-					<table class="table table-hover">
-						<thead>
-							<th>Timestamp</th><th>Type</th><th>Sub Type</th><th>Name</th><th>Id</th>
-							<th>Sequence</th><th>Value</th>
-						</thead>
-						<tbody>
-							<xsl:for-each select="*">
-								<tr>
-									<td><xsl:value-of select="@timestamp"/></td>
-									<td><xsl:value-of select="name()"/></td>
-									<td><xsl:value-of select="@subType"/></td>
-									<td><xsl:value-of select="@name"/></td>
-									<td><xsl:value-of select="@dataItemId"/></td>
-									<td><xsl:value-of select="@sequence"/></td>
-									<td><xsl:value-of select="."/></td>
-								</tr>
-							</xsl:for-each>
-						</tbody>
-					</table>
-
-				</div>			
+				<div class="panel-group">
+				
+					<xsl:apply-templates select="*"/>
+				
+				</div>	
 	
 			</div>
 			
 		</div>	
+
+	</xsl:template>
+	
+	<xsl:template match="m:DataItems">
+	
+		<div class="table-responsive">
+
+			<table class="table table-hover">
+				<thead>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Category</th>
+					<th>Native Units</th>
+					<th>Type</th>
+					<th>SubType</th>
+					<th>Units</th>
+					<th>CDATA</th>
+				</thead>
+				<tbody>
+					<xsl:for-each select="*">
+						<tr>
+							<td><xsl:value-of select="@id"/></td>
+							<td><xsl:value-of select="@name"/></td>
+							<td><xsl:value-of select="@category"/></td>
+							<td><xsl:value-of select="@nativeUnits"/></td>
+							<td><xsl:value-of select="@type"/></td>
+							<td><xsl:value-of select="@subType"/></td>
+							<td><xsl:value-of select="@units"/></td>
+							<td><xsl:value-of select="."/></td>
+						</tr>
+					</xsl:for-each>
+				</tbody>
+			</table>
+
+		</div>		
 
 	</xsl:template>
 	
