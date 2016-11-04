@@ -52,7 +52,7 @@ This stylesheet is easily customizable using the Custom.css file. Customizations
 ```
 
 ## Contributions
-Contributions to this project are welcome and please feel free to contact us directly at info@trakhound.org.
+Contributions to this project are welcome and please feel free to contact us directly at info@trakhound.com.
 
 ## License
 This project is licensed under the MIT software license.
