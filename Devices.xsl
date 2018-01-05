@@ -142,7 +142,13 @@ xmlns:m="urn:mtconnect.org:MTConnectDevices:1.3"
 				</div>
 						
 			</div>
-			
+
+			<div class="panel-body">
+
+				<xsl:apply-templates select="m:DataItems"/>
+				
+			</div>
+
 			<div class="panel-body">
 			
 				<xsl:apply-templates select="m:Components"/>
@@ -214,7 +220,7 @@ xmlns:m="urn:mtconnect.org:MTConnectDevices:1.3"
 		</div>
 	
 	</xsl:template>
-	
+		
 	<xsl:template match="m:Components">
 		
 		<div class="panel-group">
