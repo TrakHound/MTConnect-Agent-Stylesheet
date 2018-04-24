@@ -4,10 +4,10 @@ XML Stylesheet for MTConnect Agents using [Bootstrap](http://getbootstrap.com/).
 ## About
 
 ### PC
-![[Agent Stylesheet PC] ](https://raw.githubusercontent.com/intolerance/MTConnect-Agent-Stylesheet/master/images/pc.png)
+![[Agent Stylesheet PC] ](https://raw.githubusercontent.com/TrakHound/MTConnect-Agent-Stylesheet/master/images/pc.png)
 
 ### Mobile
-![[Agent Stylesheet Mobile]](https://raw.githubusercontent.com/intolerance/MTConnect-Agent-Stylesheet/master/images/mobile.png)
+![[Agent Stylesheet Mobile]](https://raw.githubusercontent.com/TrakHound/MTConnect-Agent-Stylesheet/master/images/mobile.png)
 
 ### File Size
 Just over 300 KB. This Includes the necessary files for jquery, bootstrap, and the logo image.
